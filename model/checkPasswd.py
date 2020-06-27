@@ -6,7 +6,7 @@ import uuid
 
 # define profile.json constant, the file is used to
 # save user name and password_hash
-PROFILE_FILE = "Video_monitor/profiles.json"
+PROFILE_FILE = "Video_Monitor/model/profiles.json"
 
 class User(UserMixin):
     def __init__(self, username):
@@ -86,3 +86,19 @@ class User(UserMixin):
         except:
             return None
         return None
+
+# if __name__ == "__main__":
+#     def getpasswd():
+#         try:
+#             with open(PROFILE_FILE) as f:
+#                 user_profiles = json.load(f)
+#                 user_info = user_profiles.get("admin", None)
+#                 if user_info is not None:
+#                     return (user_info[0])
+#         except IOError:
+#             pass
+#         except ValueError:
+#             pass
+#         pass
+#     passwdhash=getpasswd()
+#     print (check_password_hash(passwdhash, "Video#2017!."))

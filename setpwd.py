@@ -8,7 +8,7 @@ passwd=input('输入密码')
 id=int(input('输入id'))
 
 password_hash = generate_password_hash(passwd)
-with open("Video_monitor/profiles.json", 'w+') as f:
+with open("profiles.json", 'w+') as f:
             try:
                 profiles = json.load(f)
             except ValueError:
