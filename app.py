@@ -9,7 +9,7 @@ from flask_login import login_user, login_required
 from flask_login import LoginManager, current_user
 from flask_login import logout_user
 from form.login_form import LoginForm
-from flask import request,url_for
+from flask import request,url_for,flash
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.urandom(24)
@@ -38,15 +38,15 @@ csrf.init_app(app)
 
 @app.route('/login',methods=('GET', 'POST'))
 def login():
-     form = LoginForm()
-     if form.validate_on_submit():
-        user_name = request.form.get('accountNumber', None)
-        password = request.form.get('password', None)
-        user = User(user_name)
-        if user.verify_password(password):
-            login_user(user)
-            return redirect(request.args.get('next') or url_for('main'))
-     return render_template('login.html', title="Sign In", form=form)  
+    form = LoginForm()
+    if form.validate_on_submit():
+       user_name = request.form.get('accountNumber', None)
+       password = request.form.get('password', None)
+       user = User(user_name)
+       if user.verify_password(password):
+           login_user(user)
+           return redirect(request.args.get('next') or url_for('main'))
+    return render_template('login.html', title="Sign In", form=form)  
 
 @app.route('/')
 @app.route('/main')
@@ -67,6 +67,9 @@ def logout():
 #    if form.validate_on_submit():
 #        return redirect('login')
 #    return render_template('submit.html', form=form)
+@app.route('/index')
+def index():
+    return render_template('maincss.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
