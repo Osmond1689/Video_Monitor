@@ -1,4 +1,4 @@
-import urllib.request,json,os
+import urllib.request,json
 def Huoqu_status(ztxx):
     ztadds=ztxx[1]
     ztstatus=[]
