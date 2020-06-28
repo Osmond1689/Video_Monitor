@@ -72,9 +72,14 @@ def logout():
 #    if form.validate_on_submit():
 #        return redirect('login')
 #    return render_template('submit.html', form=form)
-@app.route('/index')
-def index():
-    return render_template('main.html')
+
+@app.route('/gwjk')
+def gwjk():
+    return render_template('gwjk.html')
+
+@app.route('/gwjknew')
+def gwjknew():
+    return render_template('gwjknew.html')
 
 if __name__ == '__main__':
     #日志
