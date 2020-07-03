@@ -68,9 +68,9 @@ to get the desired effect
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="main.html" class="nav-link">Home</a>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
@@ -138,19 +138,33 @@ to get the desired effect
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
+                                  Dashboard
+                                  <i class="right fas fa-angle-left"></i>
                                 </p>
-                            </a>
+                              </a>
+                              <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                  <a href="/gwjknew" class="nav-link" target="menuFrame">
+                                    <i class="nav-icon fas fa-globe"></i>
+                                    <p>公网拉流监控</p>
+                                  </a>
+                                </li>
+                                <li class="nav-item">
+                                  <a href="/nwjk" class="nav-link" target="menuFrame">
+                                    <i class="nav-icon fas fa-search"></i>
+                                    <p>内网节点监控</p>
+                                  </a>
+                                </li>
+                              </ul>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/gwjk" class="nav-link" target="menuFrame">
                                 <i class="nav-icon fas fa-globe"></i>
                                 <p>公网拉流监控</p>
@@ -163,7 +177,7 @@ to get the desired effect
                                     内网节点监控
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -174,7 +188,7 @@ to get the desired effect
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- <iframe id="menuFrame" name="menuFrame" width="100%" height="600" src="http://baidu.com" frameboredr="0" scrolling="auto" onload="changeFrameHeight()"></iframe> -->
-            <iframe id="menuFrame" name="menuFrame" src="http://baidu.com" style="overflow:scroll;" height="600" width="100%" onload="changeFrameHeight()"></iframe>
+            <iframe id="menuFrame" name="menuFrame" src="/gwjknew" style="overflow:scroll;" height="600" width="100%" onload="changeFrameHeight()"></iframe>
         </div>
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="../static/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="../static/dist/css/googleapis.css" rel="stylesheet">
+    <script src=" ../static/plugins/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <style>
          ::-webkit-scrollbar {
             display: none;
@@ -48,27 +51,19 @@
                                 <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">厅方</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">桌台</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">地址</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">异常时间</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">AGQJ</td>
-                                            <td>B01</td>
-                                            <td>https://agqj.sugefhi.com/tz01/8-11.flv</td>
-                                            <td>####</td>
-                                        </tr>
+                                            <th>厅方ID</th>
+                                            <th>桌台ID</th>
+                                            <th>视频地址</th>
+                                            <th>异常情况</th>
+                                            <th>异常时间</th>
+                                                </tr>
+                                        </thead>
+                                    <tbody class="dataTables_paginate paging_simple_numbers">
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                            </div>
+                        <!-- <div class="row">
                             <div class="col-sm-12 col-md-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                                     <ul class="pagination">
@@ -78,7 +73,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -86,8 +81,47 @@
         </div>
     </div>
     <!-- /.card -->
-    <div class="row" id="mountNode"></div>
-    <script src=" ../static/plugins/jquery/jquery.min.js "></script>
+    <div class="row" id="bar" style="width:100%; height:1000px;"></div>
+    <script>
+        var chart = echarts.init(document.getElementById('bar'), 'white', {
+            renderer: 'canvas'
+        });
+
+        $(
+            function() {
+                fetchData(chart);
+                setInterval(fetchData, 60000);
+            }
+        );
+
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "/barChart",
+                dataType: 'json',
+                success: function(result) {
+                    chart.setOption(result);
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+     $('#example2').DataTable( {
+        "searching" : false, //去掉搜索框方法一
+        "bFilter": false,   //去掉搜索框方法二
+        "info": false ,  //去掉底部文字
+         "ajax": "/ycbj",
+         "columns": [
+             { "data": "tingfang" },
+             { "data": "ztname" },
+             { "data": "ztaddr" },
+             { "data": "ztstatus" },
+             { "data": "testtime" }
+         ]
+     } );
+ } );
+    </script>
     <!-- Bootstrap -->
     <script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js "></script>
     <!-- AdminLTE -->
@@ -96,123 +130,6 @@
         /*Fixing iframe window.innerHeight 0 issue in Safari*/
         document.body.clientHeight;
     </script>
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js "></script>
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js "></script>
-    <script>
-        var data = [
-            [0, 0, 10],
-            [0, 1, 19],
-            [0, 2, 8],
-            [0, 3, 24],
-            [0, 4, 67],
-            [1, 0, 92],
-            [1, 1, 58],
-            [1, 2, 78],
-            [1, 3, 117],
-            [1, 4, 48],
-            [2, 0, 35],
-            [2, 1, 15],
-            [2, 2, 123],
-            [2, 3, 64],
-            [2, 4, 52],
-            [3, 0, 72],
-            [3, 1, 132],
-            [3, 2, 114],
-            [3, 3, 19],
-            [3, 4, 16],
-            [4, 0, 38],
-            [4, 1, 5],
-            [4, 2, 8],
-            [4, 3, 117],
-            [4, 4, 115],
-            [5, 0, 88],
-            [5, 1, 32],
-            [5, 2, 12],
-            [5, 3, 6],
-            [5, 4, 120],
-            [6, 0, 13],
-            [6, 1, 44],
-            [6, 2, 88],
-            [6, 3, 98],
-            [6, 4, 96],
-            [7, 0, 31],
-            [7, 1, 1],
-            [7, 2, 82],
-            [7, 3, 32],
-            [7, 4, 30],
-            [8, 0, 85],
-            [8, 1, 97],
-            [8, 2, 123],
-            [8, 3, 64],
-            [8, 4, 84],
-            [9, 0, 47],
-            [9, 1, 114],
-            [9, 2, 31],
-            [9, 3, 48],
-            [9, 4, 91]
-        ];
-        var source = [];
-        for (var i = 0; i < data.length; i++) {
-            var item = data[i];
-            var obj = {};
-            obj.name = item[0];
-            obj.day = item[1];
-            obj.sales = item[2];
-            source.push(obj);
-        }
-        var chart = new G2.Chart({
-            container: 'mountNode',
-            forceFit: true,
-            height: window.innerHeight,
-            padding: [20, 80, 120, 85]
-        });
-        chart.source(source, {
-            name: {
-                type: 'cat',
-                values: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
-            },
-            day: {
-                type: 'cat',
-                values: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-            }
-        });
-        chart.axis('name', {
-            tickLine: null,
-            grid: {
-                align: 'center',
-                lineStyle: {
-                    lineWidth: 1,
-                    lineDash: null,
-                    stroke: '#f0f0f0'
-                }
-            }
-        });
-        chart.axis('day', {
-            title: null,
-            grid: {
-                align: 'center',
-                lineStyle: {
-                    lineWidth: 1,
-                    lineDash: null,
-                    stroke: '#f0f0f0'
-                },
-                showFirstLine: true
-            }
-        });
-        chart.polygon().position('name*day').color('sales', '#BAE7FF-#1890FF-#0050B3').label('sales', {
-            offset: -2,
-            textStyle: {
-                fill: '#fff',
-                shadowBlur: 2,
-                shadowColor: 'rgba(0, 0, 0, .45)'
-            }
-        }).style({
-            lineWidth: 1,
-            stroke: '#fff'
-        });
-        chart.render();
-    </script>
-
     <!-- OPTIONAL SCRIPTS -->
 </body>
 
