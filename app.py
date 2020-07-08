@@ -22,7 +22,7 @@ from model.mariadb import select,selectyc
 from pyecharts.globals import WarningType
 WarningType.ShowWarning = False
 
-app = Flask(__name__, static_folder="templates")
+app = Flask(__name__)
 csrf = CSRFProtect(app)
 # csrf protection
 # WTF_CSRF_ENABLED = False
@@ -92,8 +92,8 @@ def bar_base() -> Bar:
         dqzsj=now-datetime.timedelta(minutes=zsf)
     else:
         dqzsj=now
-    for j in range(72):
-        tssj1=dqzsj-datetime.timedelta(minutes=10*(j-1))
+    for j in range(720):
+        tssj1=dqzsj-datetime.timedelta(minutes=1*(j-1))
         tssj=tssj1.strftime('%Y-%m-%d %H:%M')
         time.insert(0,tssj)
     # app.logger.info(time)

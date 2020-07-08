@@ -1,8 +1,12 @@
+import threading,time
+i = 0
+def thread_test(sz):
+    global i
+    print(sz[i],time.time())
+    i=i+1
 
-import urllib.request
-status=urllib.request.urlopen("http://agqj.sugefhi.com/test/time1.flv").code
-print (status)
-# url="https://eu.sugefhi.com/"
-# file=urllib.request.urlopen(url)
-# print('获取当前url:',file.geturl() )
-# print('file.getcode,HTTPResponse类型:',file.getcode )
+if __name__=='__main__':
+    sz=[1,2,3,4,5,6,7,8,9,10]
+    for i in range(len(sz)):
+        t=threading.Thread(target=thread_test,args=(sz,))
+        t.start()
