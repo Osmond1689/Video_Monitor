@@ -57,7 +57,7 @@ if __name__ == "__main__":
     ticks=tick.strftime('%Y-%m-%d %H:%M')
     i=0
     lock = threading.Lock()
-    path="/root/Python/Demo/video_list.json"
+    path="/root/Python/Video_Monitor/video_list.json"
     req=Readjson(path)
     if req[0] == None:
         ztaddr=req[1][1]

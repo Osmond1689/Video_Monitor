@@ -3,8 +3,9 @@ import pymysql.cursors
 # Connect to the database
 def insert(tingfang,ztname,ztaddr,ztstatus,testtime):
     connection = pymysql.connect(host='localhost',
+                                port=6033,
                                 user='root',
-                                password='Video#2017!.',
+                                password='Video#2017',
                                 db='VideoMonitor',
                                 cursorclass=pymysql.cursors.DictCursor)
 
@@ -21,8 +22,9 @@ def insert(tingfang,ztname,ztaddr,ztstatus,testtime):
 
 def select(time):
     connection = pymysql.connect(host='localhost',
+                                port=6033,
                                 user='root',
-                                password='Video#2017!.',
+                                password='Video#2017',
                                 db='VideoMonitor',
                                 cursorclass=pymysql.cursors.DictCursor)
 
@@ -41,8 +43,9 @@ def select(time):
 
 def selectyc(time):
     connection = pymysql.connect(host='localhost',
+                                port=6033,
                                 user='root',
-                                password='Video#2017!.',
+                                password='Video#2017',
                                 db='VideoMonitor',
                                 cursorclass=pymysql.cursors.DictCursor)
 
